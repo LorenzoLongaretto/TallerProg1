@@ -1,6 +1,9 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class BeerHouse {
+    public ArrayList<Mesa> mesas = new ArrayList<Mesa>();
     public void abrirLocal(int cantMesas){
 
     }

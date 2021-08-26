@@ -1,6 +1,9 @@
+import vista.Ventana;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hola");
+        Ventana ventana = new Ventana();
+        ventana.setVisible(true);
     }
 }
 
