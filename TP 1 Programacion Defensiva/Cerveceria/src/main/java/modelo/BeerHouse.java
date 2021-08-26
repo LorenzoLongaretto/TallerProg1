@@ -1,4 +1,4 @@
-
+package modelo;
 
 public class BeerHouse {
     public void abrirLocal(int cantMesas){
