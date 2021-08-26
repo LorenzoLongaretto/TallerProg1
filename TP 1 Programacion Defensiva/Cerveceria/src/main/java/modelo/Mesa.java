@@ -11,6 +11,16 @@ public class Mesa {
         this.nMesa=numeroMesa;
     }
 
+    public int numeroDeMesa(){
+        return this.nMesa;
+    }
+    public void sumarGasto(float nuevoGasto) throws Exception {
+        if(this.ocupado()) {
+            this.total += nuevoGasto;
+        }else{
+            throw new Exception();
+        }
+    }
     public void assignaMesa(){
         this.total=0;
         this.estado='O';
