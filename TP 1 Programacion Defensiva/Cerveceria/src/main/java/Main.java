@@ -1,9 +1,10 @@
-import vista.Ventana;
+import controlador.Controlador;
+
 
 public class Main {
     public static void main(String[] args) {
-        Ventana ventana = new Ventana();
-        ventana.setVisible(true);
+        Controlador controlador = new Controlador();
+
     }
 }
 

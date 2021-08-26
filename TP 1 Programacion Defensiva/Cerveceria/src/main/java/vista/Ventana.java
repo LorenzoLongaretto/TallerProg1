@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Ventana extends JFrame {
 
@@ -9,12 +11,13 @@ public class Ventana extends JFrame {
     private JPanel northPanel;
     private JPanel centerPanel;
 
+    ArrayList<JButton> botones = new ArrayList<JButton>();
 
     private JLabel titulo;
 
     public Ventana(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 250, 200);
+        setBounds(100, 100, 550, 250);
         setTitle("Cerveceria");
         mainPanel = new JPanel();
         setContentPane(mainPanel);
@@ -27,11 +30,29 @@ public class Ventana extends JFrame {
         mainPanel.add(northPanel,BorderLayout.NORTH);
 
         centerPanel = new JPanel();
-        centerPanel.setLayout(new GridLayout(3,2));
+        centerPanel.setLayout(new GridLayout(3,2,10,15));
         mainPanel.add(centerPanel,BorderLayout.CENTER);
 
-        for (int i=0;i<6;i++){
+        ArrayList<String> mensajes = new ArrayList<String>();
+        mensajes.add("Abrir local con esta cant mesas");
+        mensajes.add("Cierra esta mesa");
+        mensajes.add("Ocupa esta mesa");
+
+        ArrayList<String> comandos = new ArrayList<String>();
+        //TODO ActionCommands
+        for (int i=0;i<3;i++){
             JTextArea text = new JTextArea();
+            JButton button = new JButton(mensajes.get(i));
+            botones.add(button);
+            centerPanel.add(text);
+            centerPanel.add(button);
         }
+    }
+    public void setActionListener(ActionListener controlador){
+
+        for (JButton boton: botones) {
+            boton.addActionListener(controlador);
+        }
+
     }
 }

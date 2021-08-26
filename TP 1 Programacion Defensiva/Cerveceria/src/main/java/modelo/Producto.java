@@ -13,4 +13,11 @@ public class Producto {
         this.numProducto=cantProductos;
     }
 
+    public float costoProducto(){
+        return  this.precio;
+    }
+    public int getId(){
+        return this.numProducto;
+    }
+
 }
