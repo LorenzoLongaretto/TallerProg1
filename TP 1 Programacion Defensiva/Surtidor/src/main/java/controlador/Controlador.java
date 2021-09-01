@@ -1,8 +1,11 @@
 package controlador;
 
+import excepciones.ExcesoCombustibleException;
+import excepciones.MangueraActivadaException;
 import modelo.Surtidor;
 import vista.Ventana;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -13,7 +16,7 @@ public class Controlador implements ActionListener {
 
     public Controlador() {
         Random rand = new Random();
-        surtidor = new Surtidor(rand.nextInt(2000));
+        surtidor = new Surtidor(5/*rand.nextInt(2000)*/);
         ventana = new Ventana();
         ventana.setVisible(true);
         ventana.setActionListener(this);
@@ -24,13 +27,34 @@ public class Controlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
         if (comando.equals("CargarSurtidor")) {
-            this.surtidor.cargarSurtidor(Float.parseFloat(ventana.getCantidadCarga()));
+            try {
+                this.surtidor.cargarSurtidor(ventana.getCantidadCarga());
+            } catch (ExcesoCombustibleException ex) {
+                JOptionPane.showMessageDialog(null, "No se puede realizar la carga! Se excedería del límite del depósito");
+            }
         } else if (comando.equals("Activar1")) {
-            new Thread(() -> this.surtidor.activarManguera1()).start();
-            ventana.encendidaMangueraUno(true);
+            new Thread(() ->{
+                ventana.encendidaMangueraUno(true);
+                try {
+                    this.surtidor.activarManguera1();
+                    ventana.encendidaMangueraUno(false);
+                } catch (MangueraActivadaException ex) {
+                    JOptionPane.showMessageDialog(null, "Usted está activando una manguera que ya estaba encendida. Tenga cuidado");
+                }
+
+            }).start();
+
         } else if (comando.equals("Activar2")) {
-            new Thread(() -> this.surtidor.activarManguera2()).start();
-            ventana.encendidaMangueraDos(true);
+            new Thread(() ->{
+                ventana.encendidaMangueraDos(true);
+                try {
+                    this.surtidor.activarManguera2();
+                    ventana.encendidaMangueraDos(false);
+                } catch (MangueraActivadaException ex) {
+                    JOptionPane.showMessageDialog(null, "Usted está activando una manguera que ya estaba encendida. Tenga cuidado");
+                }
+
+            }).start();
         } else if (comando.equals("Desactivar1")) {
             this.surtidor.desactivarManguera1();
             ventana.encendidaMangueraUno(false);

@@ -1,6 +1,9 @@
 package modelo;
 
 import controlador.Controlador;
+import excepciones.ExcesoCombustibleException;
+import excepciones.MangueraActivadaException;
+import excepciones.NoHayMasCombustibleException;
 
 public class Surtidor {
     private float cantCombustible;
@@ -18,12 +21,14 @@ public class Surtidor {
         mangueraActivada2=false;
     }
 
-    public void cargarSurtidor(float carga){
-        this.cantCombustible += carga;
-        //TODO Validar exceso de carga
+    public void cargarSurtidor(float carga) throws ExcesoCombustibleException {
+        if (this.cantCombustible + carga <= MAX_CANT)
+            this.cantCombustible += carga;
+        else throw new ExcesoCombustibleException();
+
     }
 
-    public void activarManguera1(){
+    public void activarManguera1() throws MangueraActivadaException {
         float acumulador =0;
         if (!mangueraActivada1){
             mangueraActivada1 = true;
@@ -33,17 +38,20 @@ public class Surtidor {
                     acumulador++;
                     Controlador.updateVentana(this.cantCombustible);
                     Thread.sleep(1000);
-                } catch (Exception e){ //Cambiar por excepcion de no hay mas gasolina en tanque
+                } catch (NoHayMasCombustibleException e){
+                    mangueraActivada1 = false;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
             ultimaventaManguera1 = acumulador;
             acumuladoManguera1 += acumulador;
         } else {
-            //error: manguera ya activada. Avisar
+            throw new MangueraActivadaException();
         }
     }
 
-    public void activarManguera2(){
+    public void activarManguera2() throws MangueraActivadaException {
         float acumulador =0;
         if (!mangueraActivada2){
             mangueraActivada2 = true;
@@ -53,13 +61,16 @@ public class Surtidor {
                     acumulador++;
                     Controlador.updateVentana(this.cantCombustible);
                     Thread.sleep(1000);
-                } catch (Exception e){ //Cambiar por excepcion de no hay mas gasolina en tanque
+                } catch (NoHayMasCombustibleException e){
+                    mangueraActivada2 = false;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
             ultimaventaManguera2 = acumulador;
             acumuladoManguera2 += acumulador;
         } else {
-            //error: manguera ya activada. Avisar
+            throw new MangueraActivadaException();
         }
     }
 
@@ -71,8 +82,10 @@ public class Surtidor {
         mangueraActivada2 = false;
     }
 
-    private synchronized void quitarLitro(){
-        this.cantCombustible--;
+    private synchronized void quitarLitro() throws NoHayMasCombustibleException {
+        if (cantCombustible>0)
+            this.cantCombustible--;
+        else throw new NoHayMasCombustibleException();
     }
 
     public float getCantCombustible() {

@@ -105,8 +105,13 @@ public class Ventana extends JFrame {
 
     }
 
-    public String getCantidadCarga() {
-        return textField.getText();
+    public float getCantidadCarga() {
+            try {
+                return Float.parseFloat(textField.getText());
+            } catch (NumberFormatException | NullPointerException e){
+                JOptionPane.showMessageDialog(null,"Debe ingresar una cantidad de combustible válida");
+                return 0;
+            }
     }
 
     public void setActionListener(ActionListener list){
