@@ -14,6 +14,16 @@ public class Controlador implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        String comando  = e.getActionCommand();
+        
+        if(comando.equalsIgnoreCase("Abrir")) {
+        	
+        }
+        if(comando.equalsIgnoreCase("Cerrar")) {
+        	
+        }
+        if(comando.equalsIgnoreCase("Ocupar")) {
+	
+        }
     }
 }

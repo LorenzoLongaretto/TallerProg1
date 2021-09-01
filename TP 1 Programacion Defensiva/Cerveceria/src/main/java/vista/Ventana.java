@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements IVista{
 
     private JPanel mainPanel;
     private JPanel northPanel;
@@ -39,14 +39,18 @@ public class Ventana extends JFrame {
         mensajes.add("Ocupa esta mesa");
 
         ArrayList<String> comandos = new ArrayList<String>();
-        //TODO ActionCommands
+        comandos.add("Abrir");
+        comandos.add("Cerrar");
+        comandos.add("Ocupar");
         for (int i=0;i<3;i++){
             JTextArea text = new JTextArea();
             JButton button = new JButton(mensajes.get(i));
+            button.setActionCommand(comandos.get(i));
             botones.add(button);
             centerPanel.add(text);
             centerPanel.add(button);
         }
+        
     }
     public void setActionListener(ActionListener controlador){
 
@@ -55,4 +59,19 @@ public class Ventana extends JFrame {
         }
 
     }
+	@Override
+	public void abrirLocal(int nro) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void cerrarMesa(int nro) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void ocuparMesa(int nro) {
+		// TODO Auto-generated method stub
+		
+	}
 }
