@@ -1,5 +1,7 @@
+import controlador.Controlador;
+
 public class Main {
     public static void main(String[] args) {
-        //TODO
+        Controlador controlador = new Controlador();
     }
 }
