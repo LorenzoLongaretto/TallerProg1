@@ -1,12 +1,14 @@
 package modelo;
 
+import controlador.Controlador;
+
 public class Surtidor {
     private float cantCombustible;
     private boolean mangueraActivada1,mangueraActivada2;
     private static final int MAX_CANT = 2000;
     float acumuladoManguera1, acumuladoManguera2, ultimaventaManguera1, ultimaventaManguera2;
 
-    private Surtidor(float cantCombustible) {
+    public Surtidor(float cantCombustible) {
         this.cantCombustible = cantCombustible;
         acumuladoManguera1 = 0;
         acumuladoManguera2 = 0;
@@ -29,6 +31,7 @@ public class Surtidor {
                 try {
                     this.quitarLitro();
                     acumulador++;
+                    Controlador.updateVentana(this.cantCombustible);
                     Thread.sleep(1000);
                 } catch (Exception e){ //Cambiar por excepcion de no hay mas gasolina en tanque
                 }
@@ -47,6 +50,8 @@ public class Surtidor {
             while (mangueraActivada2){
                 try {
                     this.quitarLitro();
+                    acumulador++;
+                    Controlador.updateVentana(this.cantCombustible);
                     Thread.sleep(1000);
                 } catch (Exception e){ //Cambiar por excepcion de no hay mas gasolina en tanque
                 }

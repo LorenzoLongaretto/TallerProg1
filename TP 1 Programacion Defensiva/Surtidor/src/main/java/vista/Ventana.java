@@ -22,6 +22,8 @@ public class Ventana extends JFrame {
     private JButton btnActivar2;
     private JButton btnDesactivar1;
     private JButton btnDesactivar2;
+    private JButton btnManguera1;
+    private JButton btnManguera2;
 
     public Ventana() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,6 +81,10 @@ public class Ventana extends JFrame {
         btnDesactivar1.setActionCommand("Desactivar1");
         panelActivar.add(btnDesactivar1);
         
+        btnManguera1 = new JButton("   ");
+        btnManguera1.setBackground(Color.RED);
+        panelActivar.add(btnManguera1);
+        
         panelDesactivar = new JPanel();
         FlowLayout flowLayout_2 = (FlowLayout) panelDesactivar.getLayout();
         flowLayout_2.setVgap(20);
@@ -92,8 +98,17 @@ public class Ventana extends JFrame {
         btnDesactivar2 = new JButton("Desactivar manguera 2");
         btnDesactivar2.setActionCommand("Desactivar2");
         panelDesactivar.add(btnDesactivar2);
+        
+        btnManguera2 = new JButton("   ");
+        btnManguera2.setBackground(Color.RED);
+        panelDesactivar.add(btnManguera2);
 
     }
+
+    public String getCantidadCarga() {
+        return textField.getText();
+    }
+
     public void setActionListener(ActionListener list){
         this.btnActivar1.addActionListener(list);
         this.btnActivar2.addActionListener(list);
@@ -105,5 +120,12 @@ public class Ventana extends JFrame {
     public void updateBar(float value){
         this.progressBar.setValue(Math.round(value));
         this.lbValor.setText(String.valueOf(value));
+    }
+
+    public void encendidaMangueraUno(boolean estado){
+        btnManguera1.setBackground(!estado?Color.RED:Color.GREEN);
+    }
+    public void encendidaMangueraDos(boolean estado){
+        btnManguera2.setBackground(!estado?Color.RED:Color.GREEN);
     }
 }
