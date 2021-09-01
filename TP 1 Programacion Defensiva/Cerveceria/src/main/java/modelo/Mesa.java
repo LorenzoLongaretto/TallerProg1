@@ -2,7 +2,7 @@ package modelo;
 
 public class Mesa {
     private static int numeroMesa=0;
-    private int nMesa;
+    private final int nMesa;
     private char estado;
     private float total;
 
@@ -18,10 +18,10 @@ public class Mesa {
         if(this.ocupado()) {
             this.total += nuevoGasto;
         }else{
-            throw new Exception();
+            throw new MesaLibreException("La mesa esta libre, no tiene gastos");
         }
     }
-    public void assignaMesa(){
+    public void asignaMesa(){
         this.total=0;
         this.estado='O';
     }
@@ -34,5 +34,9 @@ public class Mesa {
     public boolean ocupado(){
         return this.estado=='O';
     }
+
+	public int getnMesa() {
+		return nMesa;
+	}
 
 }
