@@ -1,6 +1,9 @@
 package vista;
 
 import javax.swing.*;
+
+import modelo.BeerHouse;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,7 +15,7 @@ public class Ventana extends JFrame implements IVista{
     private JPanel centerPanel;
 
     ArrayList<JButton> botones = new ArrayList<JButton>();
-
+    ArrayList<JTextArea> areasTexto = new ArrayList<JTextArea>(); 
     private JLabel titulo;
 
     public Ventana(){
@@ -46,6 +49,7 @@ public class Ventana extends JFrame implements IVista{
             JTextArea text = new JTextArea();
             JButton button = new JButton(mensajes.get(i));
             button.setActionCommand(comandos.get(i));
+            areasTexto.add(text);
             botones.add(button);
             centerPanel.add(text);
             centerPanel.add(button);
@@ -60,18 +64,28 @@ public class Ventana extends JFrame implements IVista{
 
     }
 	@Override
-	public void abrirLocal(int nro) {
-		// TODO Auto-generated method stub
-		
+	public int devolverCantMesas() {
+		if(!this.areasTexto.get(0).getText().isEmpty())
+		return Integer.parseInt(this.areasTexto.get(0).getText());
+		else
+			return 0;
 	}
 	@Override
-	public void cerrarMesa(int nro) {
-		// TODO Auto-generated method stub
-		
+	public int mesaACerrar() {
+		if(!this.areasTexto.get(1).getText().isEmpty())
+		return Integer.parseInt(this.areasTexto.get(1).getText());
+		else
+			return 0;
 	}
 	@Override
-	public void ocuparMesa(int nro) {
-		// TODO Auto-generated method stub
-		
+	public int mesaAOcupar() {
+		if(!this.areasTexto.get(0).getText().isEmpty())
+		return Integer.parseInt(this.areasTexto.get(2).getText());
+		else
+			return 0;
 	}
+	@Override
+	public void msj(String msj) {
+		JOptionPane.showMessageDialog(this, msj);
+	}	
 }
