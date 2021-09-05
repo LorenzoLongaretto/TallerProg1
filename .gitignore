@@ -1,3 +1,8 @@
 
 *.xml
-TP 1 Programacion Defensiva/Surtidor/Surtidor.iml
+*.iml
+TP 1 Programacion Defensiva/JuegoNumero/.classpath
+*.class
+TP 1 Programacion Defensiva/JuegoNumero/bin/.project
+*.prefs
+TP 1 Programacion Defensiva/JuegoNumero/.project
