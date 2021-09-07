@@ -23,8 +23,8 @@ public class BeerHouse {
     	return instancia;
     }
     public void abrirLocal(int cantMesas){
-    	assert cantMesas >=1:"La cantidad de mesas debe ser mayor a 1";
-    	assert carta.size() >=1: "La cantidad de productos debe ser mayor a 1";
+    	assert cantMesas  > 1:"La cantidad de mesas debe ser mayor a 1";
+    	assert carta.size() >  1: "La cantidad de productos debe ser mayor a 1";
         
     	this.estado="Abierto";
         for(int i=0;i<cantMesas;i++){
@@ -40,15 +40,16 @@ public class BeerHouse {
       Mesa mesa  = this.buscaMesa(nroMesa);
       if(mesa == null)
     	  throw new NoExisteMesaException("No existe la mesa que quiere ocupar");
-      
-      mesa.asignaMesa();
+      if(!mesa.ocupado())
+    	  mesa.asignaMesa();
     }
     public void cerrarMesa(int nroMesa) throws NoExisteMesaException{
     	Mesa mesa  = this.buscaMesa(nroMesa);
         if(mesa == null)
       	  throw new NoExisteMesaException("No existe la mesa que quiere cerrar");
         
-        mesa.liberaMesa();
+        if(mesa.ocupado())
+        	mesa.liberaMesa();
     }
 
     public Mesa buscaMesa(int nroMesa) {
@@ -65,6 +66,4 @@ public class BeerHouse {
         	  mesa  = null;
           return mesa;
    }
-
-
 }

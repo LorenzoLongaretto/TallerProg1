@@ -36,7 +36,7 @@ public class Controlador implements ActionListener {
         if(comando.equalsIgnoreCase("Ocupar")) {
         	 int nro = this.ventana.mesaAOcupar();
         	 try {
-				BeerHouse.getInstance().cerrarMesa(nro);
+				BeerHouse.getInstance().ocuparMesa(nro);;
 			} catch (NoExisteMesaException e1) {
 				this.ventana.msj(e1.getMessage());
 			}
