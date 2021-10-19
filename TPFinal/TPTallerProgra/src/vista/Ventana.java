@@ -20,7 +20,10 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Queue;
@@ -94,8 +97,9 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 	private JScrollPane scrollPane_4;
 	private JLabel lbl_facturas;
 	private JPanel panel_busqueda;
-	private JTextField textField;
+	private JTextField textFieldFecha1;
 	private JButton btn_busqueda;
+	private JTextField textFieldFecha2;
 	
 
    	public Ventana() {
@@ -277,11 +281,16 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 		this.panel_busqueda = new JPanel();
 		this.panel_facturas.add(this.panel_busqueda);
 		
-		this.textField = new JTextField();
-		this.panel_busqueda.add(this.textField);
-		this.textField.setColumns(10);
+		this.textFieldFecha1 = new JTextField();
+		this.panel_busqueda.add(this.textFieldFecha1);
+		this.textFieldFecha1.setColumns(10);
+		
+		textFieldFecha2 = new JTextField();
+		panel_busqueda.add(textFieldFecha2);
+		textFieldFecha2.setColumns(10);
 		
 		this.btn_busqueda = new JButton("Buscar");
+		btn_busqueda.setActionCommand("BuscarFacturas");
 		this.panel_busqueda.add(this.btn_busqueda);
 		
 		this.panel_historias = new JPanel();
@@ -421,6 +430,40 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 	public void borrarFactura() {
 		this.textArea_Factura.setText("");
 		
+	}
+
+
+
+	@Override
+	public GregorianCalendar getFechaInicio() {
+		String auxtexto = this.textFieldFecha1.getText();
+		Date date=null;
+		GregorianCalendar fechaaux = new GregorianCalendar();
+	    try {
+			date=new SimpleDateFormat("dd/MM/yyyy").parse(auxtexto);
+			fechaaux.setTime(date);
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "Error en el formato de la fecha, se espera: dd/mm/aaaa");
+		}  
+	    
+		return fechaaux;
+	}
+
+
+
+	@Override
+	public GregorianCalendar getFechaFin() {
+		String auxtexto = this.textFieldFecha2.getText();
+		Date date=null;
+		GregorianCalendar fechaaux = new GregorianCalendar();
+	    try {
+			date=new SimpleDateFormat("dd/MM/yyyy").parse(auxtexto);
+			fechaaux.setTime(date);
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "Error en el formato de la fecha, se espera: dd/mm/aaaa");
+		}  
+	    
+		return fechaaux;
 	}
 
 }

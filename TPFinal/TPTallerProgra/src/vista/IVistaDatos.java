@@ -1,7 +1,12 @@
 package vista;
 
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 
 public interface IVistaDatos {
-	public void setActionListenerDatos(ActionListener actionListener);
+	void setActionListenerDatos(ActionListener actionListener);
+	
+	GregorianCalendar getFechaInicio();
+	GregorianCalendar getFechaFin();
+	
 }

@@ -36,6 +36,7 @@ public class Controlador implements ActionListener,WindowListener{
 		this.setVistaPaciente(vistaPaciente);
 		this.setVistaMedico(vistaMedico);
 		this.setVistaHabitacion(vistaHabitacion);
+		this.setVistaDatos(vistaDatos);
 	
 		
 	}
@@ -161,6 +162,9 @@ public class Controlador implements ActionListener,WindowListener{
             else
             	this.vistaPaciente.mensaje("Debe seleccionar un paciente de la lista de Atencion");
 			
+		} if(comando.equalsIgnoreCase("BuscarFacturas")) {
+			Clinica clinica = Clinica.getInstance();
+			System.out.println(clinica.buscaFacturas(this.vistaDatos.getFechaInicio(), this.vistaDatos.getFechaFin()));
 		}
 
      
