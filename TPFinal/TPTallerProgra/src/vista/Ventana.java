@@ -22,6 +22,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -327,6 +328,7 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 	@Override
 	public void setActionListenerDatos(ActionListener actionListener) {
 		this.actionListener = actionListener;
+		this.btn_busqueda.addActionListener(actionListener);
 	}
 	@Override
 	public Paciente getPacienteSeleccionado() {
@@ -443,7 +445,7 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 			date=new SimpleDateFormat("dd/MM/yyyy").parse(auxtexto);
 			fechaaux.setTime(date);
 		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Error en el formato de la fecha, se espera: dd/mm/aaaa");
+			JOptionPane.showMessageDialog(null, "Error en el formato de la fecha INICIO, se espera: dd/mm/aaaa");
 		}  
 	    
 		return fechaaux;
@@ -460,10 +462,20 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 			date=new SimpleDateFormat("dd/MM/yyyy").parse(auxtexto);
 			fechaaux.setTime(date);
 		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Error en el formato de la fecha, se espera: dd/mm/aaaa");
+			JOptionPane.showMessageDialog(null, "Error en el formato de la fecha FINAL, se espera: dd/mm/aaaa");
 		}  
 	    
 		return fechaaux;
+	}
+
+
+
+	@Override
+	public void muestraLista(ArrayList<Factura> facturas) {
+		for(int i=0;i<facturas.size();i++) {
+			this.modeloListaFacturas.addElement(facturas.get(i));
+		}
+		
 	}
 
 }

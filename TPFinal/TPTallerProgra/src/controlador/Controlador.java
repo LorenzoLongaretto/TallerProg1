@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
+import java.util.ArrayList;
 
 import excepciones.HabitacionOcupadaException;
 
@@ -164,7 +164,12 @@ public class Controlador implements ActionListener,WindowListener{
 			
 		} if(comando.equalsIgnoreCase("BuscarFacturas")) {
 			Clinica clinica = Clinica.getInstance();
-			System.out.println(clinica.buscaFacturas(this.vistaDatos.getFechaInicio(), this.vistaDatos.getFechaFin()));
+			ArrayList<Factura> facturas = clinica.buscaFacturas(this.vistaDatos.getFechaInicio(), this.vistaDatos.getFechaFin());
+			if(facturas.size()>0)
+			   this.vistaDatos.muestraLista(facturas);
+			else {
+				this.vistaPaciente.mensaje("No se encuentran fechas en ese rango");
+			}
 		}
 
      
