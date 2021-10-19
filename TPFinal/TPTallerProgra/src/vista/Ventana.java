@@ -37,7 +37,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
-public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVistaHabitacion,ActionListener{
+public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVistaHabitacion,IVistaDatos,ActionListener{
 
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
@@ -316,6 +316,10 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 		this.actionListener = actionListener;
 	}
 	@Override
+	public void setActionListenerDatos(ActionListener actionListener) {
+		this.actionListener = actionListener;
+	}
+	@Override
 	public Paciente getPacienteSeleccionado() {
 		
 		return (Paciente) this.list_pacientes.getSelectedValue();
@@ -418,4 +422,5 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 		this.textArea_Factura.setText("");
 		
 	}
+
 }

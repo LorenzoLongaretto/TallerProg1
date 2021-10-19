@@ -76,7 +76,7 @@ public class Prueba {
         //Guardar Datos
         /*
         try {
-        	idao.abrirOutput("Clinica.bin");
+        	idao.abrirOutput("clinica.bin");
         	System.out.println("Creacion archivo escritura");
         	ClinicaDTO cdto = Util.clinicaDTOFromCLinica();
         	idao.escribir(cdto);
@@ -85,7 +85,7 @@ public class Prueba {
         	System.out.println("Archivo cerrado");
         	
         }catch(Exception e) {
-        	System.out.println(e.getMessage());
+        System.out.println(e.getMessage());
         }*/
         //Levantar Datos
         try {
@@ -105,6 +105,6 @@ public class Prueba {
         	System.out.println("Exception " + e.getMessage());
         }    
         Ventana ventana = new Ventana(); 
-        Controlador  controlador = new Controlador(ventana,ventana,ventana);		
+        Controlador  controlador = new Controlador(ventana,ventana,ventana,ventana);		
 	}
 }

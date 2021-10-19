@@ -15,7 +15,7 @@ import modelo.IMedico;
 import persistencia.ClinicaDTO;
 import persistencia.IPersistencia;
 import persistencia.Persistencia;
-
+import vista.IVistaDatos;
 import vista.IVistaHabitacion;
 import vista.IVistaMedico;
 import vista.IVistaPaciente;
@@ -28,13 +28,15 @@ public class Controlador implements ActionListener,WindowListener{
 	private IVistaPaciente vistaPaciente;
 	private IVistaMedico vistaMedico;
 	private IVistaHabitacion vistaHabitacion;
+	private IVistaDatos vistaDatos;
 	
 	
 	
-	public Controlador(IVistaPaciente vistaPaciente, IVistaMedico vistaMedico, IVistaHabitacion vistaHabitacion) {
+	public Controlador(IVistaPaciente vistaPaciente, IVistaMedico vistaMedico, IVistaHabitacion vistaHabitacion,IVistaDatos vistaDatos) {
 		this.setVistaPaciente(vistaPaciente);
 		this.setVistaMedico(vistaMedico);
 		this.setVistaHabitacion(vistaHabitacion);
+	
 		
 	}
 	public IVistaPaciente getVistaPaciente() {
@@ -65,7 +67,10 @@ public class Controlador implements ActionListener,WindowListener{
 		this.vistaHabitacion.setActionListenerHabitacion(this);
 	}
 
-
+    public void setVistaDatos(IVistaDatos vistaDatos) {
+    	this.vistaDatos = vistaDatos;
+    	this.vistaDatos.setActionListenerDatos(this);
+    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
