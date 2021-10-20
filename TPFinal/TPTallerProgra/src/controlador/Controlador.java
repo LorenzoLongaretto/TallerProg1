@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import javax.swing.JOptionPane;
 
@@ -166,15 +167,20 @@ public class Controlador implements ActionListener,WindowListener{
 			
 		} if(comando.equalsIgnoreCase("BuscarFacturas")) {
 			Clinica clinica = Clinica.getInstance();
-			ArrayList<Factura> facturas = clinica.buscaFacturas(this.vistaDatos.getFechaInicio(), this.vistaDatos.getFechaFin());
-			if(facturas.size()>0)
-			   this.vistaDatos.muestraLista(facturas);
-			else {
-			/*	if(this.vistaDatos.getFechaInicio().compareTo(this.vistaDatos.getFechaFin())>0) {
-					this.vistaPaciente.mensaje("La primer fecha debe ser menor a la segunda");
+			GregorianCalendar fechaInicio=null,fechaFin=null;
+			fechaInicio=this.vistaDatos.getFechaInicio();
+			fechaFin=vistaDatos.getFechaFin();
+			if(fechaInicio!= null && fechaFin!=null) {
+				ArrayList<Factura> facturas = clinica.buscaFacturas(fechaInicio, fechaFin);
+				if(facturas.size()>0)
+				   this.vistaDatos.muestraLista(facturas);
+				else {
+					if(fechaInicio.compareTo(fechaFin)>0) {
+						this.vistaPaciente.mensaje("La primer fecha debe ser menor a la segunda");
+					}
+					else
+						this.vistaPaciente.mensaje("No se encuentran fechas en ese rango");
 				}
-				else*/
-					this.vistaPaciente.mensaje("No se encuentran fechas en ese rango");
 			}
 		}
 
