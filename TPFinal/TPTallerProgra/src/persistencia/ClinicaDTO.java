@@ -64,38 +64,38 @@ public class ClinicaDTO implements Serializable
     {
 	this.direccion = direccion;
     }
-/*
+
 	public SalaDeEspera getSalaEspera() {
 		return salaEspera;
 	}
-*//*
+
 	public void setSalaEspera(SalaDeEspera salaEspera) {
 		this.salaEspera = salaEspera;
-	}*/
+	}
 
 	public ArrayList<Paciente> getPatio() {
 		return patio;
 	}
-/*
+
 	public void setPatio(ArrayList<Paciente> patio) {
 		this.patio = patio;
-	}*/
+	}
 
 	public Queue<Paciente> getListaEspera() {
 		return listaEspera;
 	}
-/*
+
 	public void setListaEspera(Queue<Paciente> listaEspera) {
 		this.listaEspera = listaEspera;
-	}*/
+	}
 
 	public Queue<Paciente> getListaAtencion() {
 		return listaAtencion;
 	}
-/*
+
 	public void setListaAtencion(Queue<Paciente> listaAtencion) {
 		this.listaAtencion = listaAtencion;
-	}*/
+	}
 
 	public TreeSet<Factura> getFacturas() {
 		return facturas;
@@ -112,15 +112,15 @@ public class ClinicaDTO implements Serializable
 	public void setPacientes(BDdePacientes pacientes) {
 		this.pacientes = pacientes;
 	}
-/*
+
 	public HashMap<Integer, Habitacion> getHabitaciones() {
 		return habitaciones;
-	}*/
-/*
+	}
+
 	public void setHabitaciones(HashMap<Integer, Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
-*/
+
 	public HashMap<Integer, IMedico> getMedicos() {
 		return medicos;
 	}
