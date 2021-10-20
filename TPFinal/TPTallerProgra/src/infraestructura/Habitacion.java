@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Clase que representa una habitacion de la clinica.
  *
  */
-public abstract class Habitacion implements Serializable{
+public abstract class Habitacion{
 
 	//Atributos
 	/**
