@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import excepciones.HabitacionOcupadaException;
 
 import infraestructura.Factura;
@@ -168,7 +170,11 @@ public class Controlador implements ActionListener,WindowListener{
 			if(facturas.size()>0)
 			   this.vistaDatos.muestraLista(facturas);
 			else {
-				this.vistaPaciente.mensaje("No se encuentran fechas en ese rango");
+			/*	if(this.vistaDatos.getFechaInicio().compareTo(this.vistaDatos.getFechaFin())>0) {
+					this.vistaPaciente.mensaje("La primer fecha debe ser menor a la segunda");
+				}
+				else*/
+					this.vistaPaciente.mensaje("No se encuentran fechas en ese rango");
 			}
 		}
 
