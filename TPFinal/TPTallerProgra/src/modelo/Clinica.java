@@ -287,10 +287,18 @@ public class Clinica {
 		return retorno;
 	}
 
+	/**Metodo que busca y devuelve una coleccion de facturas en un rango de fechas
+	 *  <b> Pre: El  fecha1 y fecha2 debe ser distinto de null.</b>
+	 * <b> Post:Se devuelve una coleccion de facturas.</b>
+	 * @param inicio: Parametro de tipo Gregorian Calendar.
+	 * @param fin: Parametro de tipo Gregorian Calendar.
+	 * @return: Coleccion de tipo Factura.
+	 */
 	public ArrayList<Factura> buscaFacturas(GregorianCalendar inicio, GregorianCalendar fin){
 		ArrayList<Factura> aux = new ArrayList<>();
 
 		for (Factura fac:facturas) {
+			
 			if (fac.getFecha().compareTo(inicio)>=0 && fac.getFecha().compareTo(fin)<=0 && fac.getPrestaciones().size() >0){
 				aux.add(fac);
 			}
