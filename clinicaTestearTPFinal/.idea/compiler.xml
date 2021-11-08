@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="TP Clinica" />
+        <module name="TPClinica" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="TP Clinica" target="16" />
+      <module name="TPClinica" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
