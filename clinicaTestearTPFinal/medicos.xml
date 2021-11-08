@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="16.0.1" class="java.beans.XMLDecoder">
+ <object class="java.util.TreeSet">
+  <void method="add">
+   <object class="usuarios.MedicoTemporarioDecorator">
+    <void property="ciudad">
+     <string>Mar del Plata</string>
+    </void>
+    <void property="dni">
+     <string>82216</string>
+    </void>
+    <void property="domicilio">
+     <string>Moreno 4562</string>
+    </void>
+    <void property="honorario">
+     <double>5775.0</double>
+    </void>
+    <void property="medico">
+     <object class="usuarios.MedicoCirujano">
+      <void property="ciudad">
+       <string>Mar del Plata</string>
+      </void>
+      <void property="dni">
+       <string>82216</string>
+      </void>
+      <void property="domicilio">
+       <string>Moreno 4562</string>
+      </void>
+      <void property="honorario">
+       <double>5500.0</double>
+      </void>
+      <void property="nombre">
+       <string>Davinia Pino</string>
+      </void>
+      <void property="numero">
+       <int>1407</int>
+      </void>
+      <void property="telefono">
+       <string>6872312</string>
+      </void>
+     </object>
+    </void>
+    <void property="nombre">
+     <string>Davinia Pino</string>
+    </void>
+    <void property="numero">
+     <int>1407</int>
+    </void>
+    <void property="telefono">
+     <string>6872312</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="usuarios.MedicoPermanenteDecorator">
+    <void property="ciudad">
+     <string>Mar del Plata</string>
+    </void>
+    <void property="dni">
+     <string>7432138</string>
+    </void>
+    <void property="domicilio">
+     <string>Belgrano 2135</string>
+    </void>
+    <void property="honorario">
+     <double>7062.000000000001</double>
+    </void>
+    <void property="medico">
+     <object class="usuarios.MedicoPediatra">
+      <void property="ciudad">
+       <string>Mar del Plata</string>
+      </void>
+      <void property="dni">
+       <string>7432138</string>
+      </void>
+      <void property="domicilio">
+       <string>Belgrano 2135</string>
+      </void>
+      <void property="honorario">
+       <double>6420.0</double>
+      </void>
+      <void property="nombre">
+       <string>Jose Rafael Novo</string>
+      </void>
+      <void property="numero">
+       <int>1408</int>
+      </void>
+      <void property="telefono">
+       <string>5761234</string>
+      </void>
+     </object>
+    </void>
+    <void property="nombre">
+     <string>Jose Rafael Novo</string>
+    </void>
+    <void property="numero">
+     <int>1408</int>
+    </void>
+    <void property="telefono">
+     <string>5761234</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="usuarios.MedicoTemporarioDecorator">
+    <void property="ciudad">
+     <string>Mar del Plata</string>
+    </void>
+    <void property="dni">
+     <string>867321</string>
+    </void>
+    <void property="domicilio">
+     <string>Colon 1235</string>
+    </void>
+    <void property="honorario">
+     <double>7717.5</double>
+    </void>
+    <void property="medico">
+     <object class="usuarios.MedicoClinico">
+      <void property="ciudad">
+       <string>Mar del Plata</string>
+      </void>
+      <void property="dni">
+       <string>867321</string>
+      </void>
+      <void property="domicilio">
+       <string>Colon 1235</string>
+      </void>
+      <void property="honorario">
+       <double>7350.0</double>
+      </void>
+      <void property="nombre">
+       <string>Luca Bermudez</string>
+      </void>
+      <void property="numero">
+       <int>1409</int>
+      </void>
+      <void property="telefono">
+       <string>57658432</string>
+      </void>
+     </object>
+    </void>
+    <void property="nombre">
+     <string>Luca Bermudez</string>
+    </void>
+    <void property="numero">
+     <int>1409</int>
+    </void>
+    <void property="telefono">
+     <string>57658432</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="usuarios.MagisterMedicoDecorator">
+    <void property="ciudad">
+     <string>Mar del Plata</string>
+    </void>
+    <void property="dni">
+     <string>867321</string>
+    </void>
+    <void property="domicilio">
+     <string>Colon 1235</string>
+    </void>
+    <void property="honorario">
+     <double>8103.375</double>
+    </void>
+    <void property="medico">
+     <object class="usuarios.MedicoTemporarioDecorator">
+      <void property="ciudad">
+       <string>Mar del Plata</string>
+      </void>
+      <void property="dni">
+       <string>867321</string>
+      </void>
+      <void property="domicilio">
+       <string>Colon 1235</string>
+      </void>
+      <void property="honorario">
+       <double>7717.5</double>
+      </void>
+      <void property="medico">
+       <object class="usuarios.MedicoClinico">
+        <void property="ciudad">
+         <string>Mar del Plata</string>
+        </void>
+        <void property="dni">
+         <string>867321</string>
+        </void>
+        <void property="domicilio">
+         <string>Colon 1235</string>
+        </void>
+        <void property="honorario">
+         <double>7350.0</double>
+        </void>
+        <void property="nombre">
+         <string>Agustin Adan</string>
+        </void>
+        <void property="numero">
+         <int>1410</int>
+        </void>
+        <void property="telefono">
+         <string>57658432</string>
+        </void>
+       </object>
+      </void>
+      <void property="nombre">
+       <string>Agustin Adan</string>
+      </void>
+      <void property="numero">
+       <int>1410</int>
+      </void>
+      <void property="telefono">
+       <string>57658432</string>
+      </void>
+     </object>
+    </void>
+    <void property="nombre">
+     <string>Agustin Adan</string>
+    </void>
+    <void property="numero">
+     <int>1410</int>
+    </void>
+    <void property="telefono">
+     <string>57658432</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="usuarios.MedicoPermanenteDecorator">
+    <void property="ciudad">
+     <string>Mar del Plata</string>
+    </void>
+    <void property="dni">
+     <string>234565</string>
+    </void>
+    <void property="domicilio">
+     <string>Marconi 2345</string>
+    </void>
+    <void property="honorario">
+     <double>3465.0000000000005</double>
+    </void>
+    <void property="medico">
+     <object class="usuarios.MedicoClinico">
+      <void property="ciudad">
+       <string>Mar del Plata</string>
+      </void>
+      <void property="dni">
+       <string>234565</string>
+      </void>
+      <void property="domicilio">
+       <string>Marconi 2345</string>
+      </void>
+      <void property="honorario">
+       <double>3150.0</double>
+      </void>
+      <void property="nombre">
+       <string>Susana Ibanez</string>
+      </void>
+      <void property="numero">
+       <int>1502</int>
+      </void>
+      <void property="telefono">
+       <string>223456732</string>
+      </void>
+     </object>
+    </void>
+    <void property="nombre">
+     <string>Susana Ibanez</string>
+    </void>
+    <void property="numero">
+     <int>1502</int>
+    </void>
+    <void property="telefono">
+     <string>223456732</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
