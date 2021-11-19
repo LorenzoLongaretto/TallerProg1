@@ -346,4 +346,12 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     public void windowDeactivated(WindowEvent e) {
 
     }
+
+    public JButton getBtnDarAlta() {
+        return btnDarAlta;
+    }
+
+    public JList<Paciente> getListPacientes() {
+        return listPacientes;
+    }
 }
