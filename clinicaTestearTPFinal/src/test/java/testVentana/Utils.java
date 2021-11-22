@@ -47,7 +47,7 @@ public class Utils {
                 "Mayor");
         clinica.ingresaPaciente("7561238", "Colon 1239", "Mar del plata", "6873213", "Agustin Adan", "Nino");
         clinica.ingresaPaciente("1354314", "Buenos Aires 1239", "Mar del plata", "2234564687",
-                "Leonel Guccione", "Joven");
+                "Sergio Aguero", "Mayor");
         clinica.ingresaPaciente("17777047", "Rateriy 5", "Mar del plata", "2234569987",
                 "Leonel Guccione", "Joven");
         clinica.ingresaPaciente("17777047", "Rateriy 55", "Mar del plata", "2235569987",
