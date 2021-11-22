@@ -49,7 +49,6 @@ public class Factura implements Comparable<Factura> {
 		double importeparcial=0,importetotal=0;
 		long diasDiferencia=0;
     	if (numeroDeFactura>0) { //xd
-    		 // diasDiferencia=(long)( (fechaDeSolicitud.getTime()-this.fecha.getTime()) /(1000 * 60 * 60 * 24));
     		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-this.fecha.getTimeInMillis());
     		if(diasDiferencia<10) {
     			importeparcial=this.costoTotalFactura-(sumaprestacionesimparesxd()*0.8);//falta calcular total y subtotalimpar
