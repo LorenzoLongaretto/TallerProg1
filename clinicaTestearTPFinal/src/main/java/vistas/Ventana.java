@@ -317,7 +317,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     @Override
     public void windowClosing(WindowEvent e) {
         System.out.println("Guardando datos");
-        this.clinica.persistenciaFacturasOut();
+        //this.clinica.persistenciaFacturasOut(); Que no persista las facturas por el momento, solo para testear
         this.clinica.persistenciaMedicosOut();
         this.clinica.persistenciaPacientesOut();
     }
@@ -345,5 +345,45 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     @Override
     public void windowDeactivated(WindowEvent e) {
 
+    }
+
+    public JButton getBtnConsultar() {
+        return btnConsultar;
+    }
+
+    public JButton getBtnDarAlta() {
+        return btnDarAlta;
+    }
+
+    public JList<Paciente> getListPacientes() {
+        return listPacientes;
+    }
+
+    public JList<Medico> getListMedicos() {
+        return listMedicos;
+    }
+
+    public JButton getBtnConsulta() {
+        return btnConsulta;
+    }
+
+    public JTextField getDiasText() {
+        return diasText;
+    }
+
+    public JButton getBtnInternacion() {
+        return btnInternacion;
+    }
+
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
+
+    public JFormattedTextField getFechaFinal() {
+        return FechaFinal;
+    }
+
+    public JFormattedTextField getFechaInicial() {
+        return FechaInicial;
     }
 }
