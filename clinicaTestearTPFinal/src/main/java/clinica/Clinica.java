@@ -415,5 +415,8 @@ public class Clinica {
 		this.pacientesEnAtencion = pacientesEnAtencion;
 	}
 
-
+    public void limpiarColecciones(){
+        pacientes.clear();
+        medicos.clear();
+    }
 }

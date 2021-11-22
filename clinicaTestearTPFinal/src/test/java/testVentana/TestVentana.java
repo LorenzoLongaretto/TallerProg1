@@ -2,7 +2,6 @@ package testVentana;
 
 import clinica.Clinica;
 import controlador.Controlador;
-import jdk.jshell.execution.Util;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,7 +30,6 @@ public class TestVentana {
         robot = new Robot();
         ventana = new Ventana();
         controlador = new Controlador(ventana);
-        clinica = Clinica.getInstance();
 
         ventana.actualizaListaMedicos(Clinica.getInstance().getMedicos());
         ventana.actualizaListaPacientes(Clinica.getInstance().getPacientes());
@@ -39,6 +37,7 @@ public class TestVentana {
 
     @After
     public void tearDown() throws Exception {
+        clinica.limpiarColecciones();
     }
 
     @Test

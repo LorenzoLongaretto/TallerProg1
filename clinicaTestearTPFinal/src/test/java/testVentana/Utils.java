@@ -30,7 +30,6 @@ public class Utils {
     }
 
     public static void cargarDatosClinicaTesting(){
-
         Clinica clinica = Clinica.getInstance("Hospital de Pruebas", "Avenida de Testing", "404", "Mar del Testing");
         clinica.addMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
                 "Clinico", "Permanente");

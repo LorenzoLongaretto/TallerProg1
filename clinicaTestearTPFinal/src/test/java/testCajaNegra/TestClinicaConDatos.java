@@ -16,7 +16,6 @@ import exceptions.DiasInvalidosException;
 import exceptions.NoExisteException;
 import exceptions.PacienteInvalidoException;
 import lugares.HabCompartida;
-import lugares.Habitacion;
 import usuarios.Medico;
 import usuarios.MedicoFactory;
 import usuarios.Paciente;
@@ -35,6 +34,7 @@ private Clinica clinica;
 
 	@After
 	public void tearDown() throws Exception {
+		clinica.limpiarColecciones();
 	}
 
 	@Test
@@ -94,7 +94,7 @@ private Clinica clinica;
 		Iterator<Paciente> it = clinica.getPacientesEnAtencion().iterator();
 		while(it.hasNext() && encontro==false) {
 			Paciente act = it.next();
-			if(act.getNombre().equals("Richard Palomo"))
+			if(act.getNombre().equals("Veronica Galindo"))
 				encontro=true;
 		}
 		if(encontro==false)
@@ -144,12 +144,13 @@ private Clinica clinica;
 	public void testAgregaFacturaInValida() {
 		
 		GregorianCalendar fecha = new GregorianCalendar(12,12,2021);
-		Paciente p =null;
+		boolean fallo = false;
 		try {
-			this.clinica.agregarFactura(p,fecha);
+			this.clinica.agregarFactura(null,fecha);
 		} catch (PacienteInvalidoException e) {
-			
+			fallo = true;
 		}
+		if(!fallo)
 		Assert.fail("Deberia dar error ya que el paciente es nulo");
 	}
 	@Test

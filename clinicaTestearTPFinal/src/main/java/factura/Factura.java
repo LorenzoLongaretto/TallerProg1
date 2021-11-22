@@ -39,8 +39,8 @@ public class Factura implements Comparable<Factura> {
 
     public Factura() {
     }
-    /**
-    public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList listaDeInsumos) {
+    
+   /* public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList listaDeInsumos) {
 		double respuesta=0;
 		double importeparcial=0,importetotal=0;
     	if (numeroDeFactura>0) { //xd
@@ -57,7 +57,7 @@ public class Factura implements Comparable<Factura> {
     		else {
     			importetotal=importeparcial*0.9;
     		}
-    		if(Math.random()*30+1==Math.random()*30+1) { //ALEATORIO y dia de fecha de facturacion
+    		if(Math.random()*30+1=Math.random()*30+1) { //ALEATORIO y dia de fecha de facturacion
     			respuesta=importetotal;
     		}
     		else {
@@ -68,9 +68,10 @@ public class Factura implements Comparable<Factura> {
     	}
     	else
     		return respuesta;
-    	
+
     }
 */
+
     public static int getNumFacturaMax() {
         return numFacturaMax;
     }

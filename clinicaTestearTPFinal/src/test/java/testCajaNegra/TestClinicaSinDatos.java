@@ -29,6 +29,7 @@ public class TestClinicaSinDatos {
 
 	@After
 	public void tearDown() throws Exception {
+		clinica.limpiarColecciones();
 	}
 	@Test
 	public void testAddMedicoInvalido() {
@@ -126,11 +127,13 @@ public class TestClinicaSinDatos {
 	public void testAgregaFacturaInValida() {
 		
 		GregorianCalendar fecha = new GregorianCalendar(12,12,2021);
+		boolean fallo = false;
 		try {
 			this.clinica.agregarFactura(null,fecha);
 		} catch (PacienteInvalidoException e) {
-			
+			fallo = true;
 		}
+		if(!fallo)
 		Assert.fail("Deberia dar error ya que el paciente es nulo");
 	}
 	@Test
