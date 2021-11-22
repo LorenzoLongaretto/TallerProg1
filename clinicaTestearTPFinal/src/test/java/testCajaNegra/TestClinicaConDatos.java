@@ -1,8 +1,9 @@
 package testCajaNegra;
 
-import static org.junit.Assert.*;
+
 
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.After;
@@ -30,7 +31,6 @@ private Clinica clinica;
                 "Clinico", "Permanente");
 		clinica.ingresaPaciente("65761321", "Moreno 1239", "Mar del plata", "2234564687", "Veronica Galindo",
                 "Mayor");
-		
 	}
 
 	@After
@@ -45,26 +45,37 @@ private Clinica clinica;
 		if(medicos.size()==0)
 			Assert.fail("El medico no se cargo correctamente");
 	}
-	/*
+	
 	@Test
 	public void testAddMedicoInvalido() {
-		clinica.addMedico(null, null, null, null, null, 0, 0, null, null, null);
-		 Set<Medico> medicos = this.clinica.getMedicos();
-		if(medicos.size()!=0)
-			Assert.fail("No se deberia cargar el medico");
-	}*/
+		int nro = clinica.getMedicos().size();
+		clinica.addMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
+                "Clinicoooo", "Permanenteee");
+		if(nro!=clinica.getMedicos().size())
+			Assert.fail("No se debe ingresar al medico");
+	}
 	@Test
 	public void testIngresaPacienteValido() {
 		clinica.ingresaPaciente("1354314", "Buenos Aires 1239", "Mar del plata", "2234564687",
                 "Richard Palomo", "Joven");
 		boolean encontro = false;
-		// Buscar paciente en el arreglo si no lo enceuntra esta mal
+		Set<Paciente> pacientes = clinica.getPacientes();
+		for(Paciente p : pacientes){
+          if(p.getNombre().equals("Richard Palomo")) {
+        	  encontro=true;
+          }
+        }
+		
 		if(encontro==false)
 			Assert.fail("Error en el ingreso del paciente");
 	}
 	@Test
 	public void testIngresaPacienteInValido() {
-		
+		int nro = clinica.getPacientes().size();
+		clinica.ingresaPaciente("1354314", "Buenos Aires 1239", "Mar del plata", "2234564687",
+                "Richard Palomo", "Joveen");
+		if(nro!=clinica.getPacientes().size())
+			Assert.fail("El paciente no debio ingresar");
 	}
 	@Test
 	public void testIngresaPacienteRepetido() {
@@ -76,11 +87,23 @@ private Clinica clinica;
 	}
 	@Test
 	public void testAtiendePaciente() {
-		
+		clinica.ingresaPaciente("1354314", "Buenos Aires 1239", "Mar del plata", "2234564687",
+           "Richard Palomo", "Joven");
+		clinica.atiendePaciente();
+		boolean encontro = false;
+		Iterator<Paciente> it = clinica.getPacientesEnAtencion().iterator();
+		while(it.hasNext() && encontro==false) {
+			Paciente act = it.next();
+			if(act.getNombre().equals("Richard Palomo"))
+				encontro=true;
+		}
+		if(encontro==false)
+			Assert.fail("No se atendio al paciente correctamente");
 	}
 	@Test
 	public void testbuscaPaciente() {
-		Paciente buscado = this.clinica.buscaPaciente(0);
+		clinica.atiendePaciente();
+		Paciente buscado = this.clinica.buscaPaciente(1);
 		if(buscado==null)
 			Assert.fail("Error en la busqueda del paciente");
 	}
@@ -108,20 +131,22 @@ private Clinica clinica;
 	@Test
 	public void testagregaInternacionAPaciente() {
 		boolean respuesta=true;
+		clinica.atiendePaciente();
 		try {
 			respuesta = this.clinica.agregaInternacionAPaciente(1,new HabCompartida(),3);
 		} catch (DiasInvalidosException e) {
 			Assert.fail("No deberia entrar");
 		}
 		if(respuesta==false)
-			Assert.fail("Error en la internaicon");
+			Assert.fail("Error en la internacion");
 	}
 	@Test
 	public void testAgregaFacturaInValida() {
 		
 		GregorianCalendar fecha = new GregorianCalendar(12,12,2021);
+		Paciente p =null;
 		try {
-			this.clinica.agregarFactura(null,fecha);
+			this.clinica.agregarFactura(p,fecha);
 		} catch (PacienteInvalidoException e) {
 			
 		}

@@ -399,5 +399,21 @@ public class Clinica {
         return this.facturas;
     }
 
+	public PriorityQueue<Paciente> getListaEspera() {
+		return listaEspera;
+	}
+
+	public ArrayList<Paciente> getPacientesEnAtencion() {
+		return pacientesEnAtencion;
+	}
+
+	public void setListaEspera(PriorityQueue<Paciente> listaEspera) {
+		this.listaEspera = listaEspera;
+	}
+
+	public void setPacientesEnAtencion(ArrayList<Paciente> pacientesEnAtencion) {
+		this.pacientesEnAtencion = pacientesEnAtencion;
+	}
+
 
 }

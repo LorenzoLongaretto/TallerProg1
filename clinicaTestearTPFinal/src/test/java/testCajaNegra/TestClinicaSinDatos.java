@@ -1,8 +1,9 @@
 package testCajaNegra;
 
-import static org.junit.Assert.*;
+
 
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.After;
@@ -30,17 +31,35 @@ public class TestClinicaSinDatos {
 	public void tearDown() throws Exception {
 	}
 	@Test
+	public void testAddMedicoInvalido() {
+		int nro = clinica.getMedicos().size();
+		clinica.addMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
+                "Clinicoooo", "Permanenteee");
+		if(nro!=clinica.getMedicos().size())
+			Assert.fail("No se debe ingresar al medico");
+	}
+	@Test
 	public void testIngresaPacienteValido() {
 		clinica.ingresaPaciente("1354314", "Buenos Aires 1239", "Mar del plata", "2234564687",
                 "Richard Palomo", "Joven");
 		boolean encontro = false;
-		// Buscar paciente en el arreglo si no lo enceuntra esta mal
+		Set<Paciente> pacientes = clinica.getPacientes();
+		for(Paciente p : pacientes){
+          if(p.getNombre().equals("Richard Palomo")) {
+        	  encontro=true;
+          }
+        }
+		
 		if(encontro==false)
 			Assert.fail("Error en el ingreso del paciente");
 	}
 	@Test
 	public void testIngresaPacienteInValido() {
-		
+		int nro = clinica.getPacientes().size();
+		clinica.ingresaPaciente("1354314", "Buenos Aires 1239", "Mar del plata", "2234564687",
+                "Richard Palomo", "Joveen");
+		if(nro!=clinica.getPacientes().size())
+			Assert.fail("El paciente no debio ingresar");
 	}
 	@Test
 	public void testIngresaPacienteRepetido() {
@@ -52,7 +71,18 @@ public class TestClinicaSinDatos {
 	}
 	@Test
 	public void testAtiendePaciente() {
-		
+		clinica.ingresaPaciente("1354314", "Buenos Aires 1239", "Mar del plata", "2234564687",
+                "Richard Palomo", "Joven");
+		clinica.atiendePaciente();
+		boolean encontro = false;
+		Iterator<Paciente> it = clinica.getPacientesEnAtencion().iterator();
+		while(it.hasNext() && encontro==false) {
+			Paciente act = it.next();
+			if(act.getNombre().equals("Richard Palomo"))
+				encontro=true;
+		}
+		if(encontro==false)
+			Assert.fail("No se atendio al paciente correctamente");
 	}
 	@Test
 	public void testAddMedicoValido() {
@@ -62,14 +92,6 @@ public class TestClinicaSinDatos {
 		if(medicos.size()==0)
 			Assert.fail("El medico no se cargo correctamente");
 	}
-	/*
-	@Test
-	public void testAddMedicoInvalido() {
-		clinica.addMedico(null, null, null, null, null, 0, 0, null, null, null);
-		 Set<Medico> medicos = this.clinica.getMedicos();
-		if(medicos.size()!=0)
-			Assert.fail("No se deberia cargar el medico");
-	}*/
 	@Test
 	public void testbuscaPaciente() {
 		Paciente buscado = this.clinica.buscaPaciente(0);
