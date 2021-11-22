@@ -39,7 +39,7 @@ public class Factura implements Comparable<Factura> {
 
     public Factura() {
     }
-    
+    /**
     public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList listaDeInsumos) {
 		double respuesta=0;
 		double importeparcial=0,importetotal=0;
@@ -70,7 +70,7 @@ public class Factura implements Comparable<Factura> {
     		return respuesta;
     	
     }
-
+*/
     public static int getNumFacturaMax() {
         return numFacturaMax;
     }
