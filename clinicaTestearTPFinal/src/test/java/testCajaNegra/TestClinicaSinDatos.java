@@ -120,7 +120,7 @@ public class TestClinicaSinDatos {
 		} catch (DiasInvalidosException e) {
 			Assert.fail("No deberia entrar");
 		}
-		if(respuesta!=false)
+		if(respuesta)
 			Assert.fail("No deberia haber encontrado al paciente");
 	}
 	@Test

@@ -57,7 +57,7 @@ public class Factura implements Comparable<Factura> {
     		else {
     			importetotal=importeparcial*0.9;
     		}
-    		if(Math.random()*30+1==Math.random()*30+1) { //ALEATORIO y dia de fecha de facturacion
+    		if(Math.random()*30+1=Math.random()*30+1) { //ALEATORIO y dia de fecha de facturacion
     			respuesta=importetotal;
     		}
     		else {
@@ -68,8 +68,9 @@ public class Factura implements Comparable<Factura> {
     	}
     	else
     		return respuesta;
-    	
-    }*/
+
+    }
+*/
 
     public static int getNumFacturaMax() {
         return numFacturaMax;
