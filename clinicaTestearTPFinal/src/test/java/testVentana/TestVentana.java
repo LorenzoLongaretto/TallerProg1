@@ -23,7 +23,7 @@ public class TestVentana {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Utils.cargarDatosClinicaTesting();
+      //
     }
 
     @Before
@@ -32,13 +32,14 @@ public class TestVentana {
         ventana = new Ventana();
         controlador = new Controlador(ventana);
         clinica = Clinica.getInstance();
-
+        Utils.cargarDatosClinicaTesting();
         ventana.actualizaListaMedicos(Clinica.getInstance().getMedicos());
         ventana.actualizaListaPacientes(Clinica.getInstance().getPacientes());
     }
 
     @After
     public void tearDown() throws Exception {
+        clinica.hacerNullTests();
     }
 
     @Test

@@ -35,6 +35,7 @@ private Clinica clinica;
 
 	@After
 	public void tearDown() throws Exception {
+		clinica.hacerNullTests();
 	}
 
 	@Test
