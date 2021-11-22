@@ -114,7 +114,7 @@ private Clinica clinica;
 			Assert.fail("Error en la busqueda del medico");
 	}
 	@Test
-	public void testagregaConsultaAPaciente() {
+	public void testagregaConsultaValida() {
 		Medico medico=null;
 		try {
 			 medico = MedicoFactory.getMedico("867321", "Colon 1235", "Mar del Plata", "57658432", "Agustin Adan", 1410, 7000,
@@ -129,7 +129,22 @@ private Clinica clinica;
 		
 	}
 	@Test
-	public void testagregaInternacionAPaciente() {
+	public void testagregaConsultaInValida() {
+		Medico medico=null;
+		try {
+			 medico = MedicoFactory.getMedico("867321", "Colon 1235", "Mar del Plata", "57658432", "Agustin Adan", 1410, 7000,
+			        "Clinico", "Temporario", "Magister");
+		} catch (NoExisteException e) {
+			Assert.fail("No deberia dar error");
+		}
+		
+		boolean respuesta = this.clinica.agregaConsultaAPaciente(0,medico);
+		if(respuesta!=false)
+			Assert.fail("Error en la consulta");
+		
+	}
+	@Test
+	public void testagregaInternacionValida() {
 		boolean respuesta=true;
 		clinica.atiendePaciente();
 		try {
@@ -138,6 +153,18 @@ private Clinica clinica;
 			Assert.fail("No deberia entrar");
 		}
 		if(respuesta==false)
+			Assert.fail("Error en la internacion");
+	}
+	@Test
+	public void testagregaInternacionInvalida() {
+		boolean respuesta=false,fallo=false;
+		clinica.atiendePaciente();
+		try {
+			respuesta = this.clinica.agregaInternacionAPaciente(1,new HabCompartida(),-1);
+		} catch (DiasInvalidosException e) {
+			fallo = true;
+		}
+		if(!fallo)
 			Assert.fail("Error en la internacion");
 	}
 	@Test

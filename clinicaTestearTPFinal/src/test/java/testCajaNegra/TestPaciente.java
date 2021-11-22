@@ -29,7 +29,17 @@ private Paciente p;
 	@Test
 	public void testConstructor() {
 		String dni = p.getDni();
+		String domicilio =  p.getDomicilio();
+		String ciudad = p.getCiudad();
+		String tel = p.getTelefono();
+		String nombre = p.getNombre();
+		String rango = p.getRangoEtario();
 		Assert.assertEquals("El dni no se cargo correctamente","65761321",dni);
+		Assert.assertEquals("El domicilio no se cargo correctamente","Moreno 1239",domicilio);
+		Assert.assertEquals("La ciudad no se cargo correctamente","Mar del plata",ciudad);
+		Assert.assertEquals("El telefono no se cargo correctamente","2234564687",tel);
+		Assert.assertEquals("El nombre no se cargo correctamente","Veronica Galindo",nombre);
+		Assert.assertEquals("El rango no se cargo correctamente","Mayor",rango);
 		// Falta ver los demas atributos
 		
 	}
