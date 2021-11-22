@@ -29,7 +29,7 @@ private Paciente p;
 	@Test
 	public void testConstructor() {
 		String dni = p.getDni();
-		Assert.assertEquals("El dni no se cargo correctamente",dni,dni);
+		Assert.assertEquals("El dni no se cargo correctamente","65761321",dni);
 		// Falta ver los demas atributos
 		
 	}
