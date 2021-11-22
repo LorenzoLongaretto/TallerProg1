@@ -29,7 +29,7 @@ public class TestClinicaSinDatos {
 
 	@After
 	public void tearDown() throws Exception {
-		clinica.hacerNullTests();
+		clinica.limpiarColecciones();
 	}
 	@Test
 	public void testAddMedicoInvalido() {

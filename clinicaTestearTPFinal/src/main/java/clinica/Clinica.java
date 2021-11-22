@@ -415,7 +415,8 @@ public class Clinica {
 		this.pacientesEnAtencion = pacientesEnAtencion;
 	}
 
-    public void hacerNullTests(){
-        instance = null;
+    public void limpiarColecciones(){
+        pacientes.clear();
+        medicos.clear();
     }
 }

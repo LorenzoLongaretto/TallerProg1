@@ -16,7 +16,6 @@ import exceptions.DiasInvalidosException;
 import exceptions.NoExisteException;
 import exceptions.PacienteInvalidoException;
 import lugares.HabCompartida;
-import lugares.Habitacion;
 import usuarios.Medico;
 import usuarios.MedicoFactory;
 import usuarios.Paciente;
@@ -35,7 +34,7 @@ private Clinica clinica;
 
 	@After
 	public void tearDown() throws Exception {
-		clinica.hacerNullTests();
+		clinica.limpiarColecciones();
 	}
 
 	@Test

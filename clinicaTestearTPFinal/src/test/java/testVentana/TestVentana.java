@@ -2,7 +2,6 @@ package testVentana;
 
 import clinica.Clinica;
 import controlador.Controlador;
-import jdk.jshell.execution.Util;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,7 +22,7 @@ public class TestVentana {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-      //
+        Utils.cargarDatosClinicaTesting();
     }
 
     @Before
@@ -31,15 +30,14 @@ public class TestVentana {
         robot = new Robot();
         ventana = new Ventana();
         controlador = new Controlador(ventana);
-        clinica = Clinica.getInstance();
-        Utils.cargarDatosClinicaTesting();
+
         ventana.actualizaListaMedicos(Clinica.getInstance().getMedicos());
         ventana.actualizaListaPacientes(Clinica.getInstance().getPacientes());
     }
 
     @After
     public void tearDown() throws Exception {
-        clinica.hacerNullTests();
+        clinica.limpiarColecciones();
     }
 
     @Test
