@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import exceptions.DiasInvalidosException;
@@ -15,6 +16,8 @@ import usuarios.Medico;
 import usuarios.Paciente;
 
 import javax.swing.*;
+
+import clinica.Clinica;
 
 /**
  * Esta clase brinda informacion sobre el transcurso del paciente en la clinica
@@ -45,13 +48,13 @@ public class Factura implements Comparable<Factura> {
     }
     
     public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
-		double respuesta=0.0;
+		double respuesta = 0;
 		double importeparcial=0,importetotal=0;
 		long diasDiferencia=0;
-    	if (numeroDeFactura>0) { //xd
+    	if ( ExistenFactura(numeroDeFactura)) {
     		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-this.fecha.getTimeInMillis());
     		if(diasDiferencia<10) {
-    			importeparcial=this.costoTotalFactura-(sumaprestacionesimparesxd()*0.8);//falta calcular total y subtotalimpar
+    			importeparcial=this.costoTotalFactura-(sumaprestacionesimparesxd()*0.8);
     		}
     		else {
     			importeparcial=this.costoTotalFactura*0.7; //B
@@ -62,7 +65,7 @@ public class Factura implements Comparable<Factura> {
     		else {
     			importetotal=importeparcial*0.9;
     		}
-    		if(Math.random()*30+1==Math.random()*30+1) { //ALEATORIO y dia de fecha de facturacion
+    		if(Math.random()*30+1==this.fecha.getTimeInMillis()) {
     			respuesta=importetotal;
     		}
     		else {
@@ -71,8 +74,6 @@ public class Factura implements Comparable<Factura> {
     			}
     		}
     	}
-    	else
-    		return respuesta;
 		return respuesta;
     }
 
@@ -122,6 +123,16 @@ public class Factura implements Comparable<Factura> {
     private void agregaprestacion(double valor)
     {
     	this.prestaciones.add(valor);
+    }
+    private boolean ExistenFactura(int numeroDeFactura) {
+    	Iterator<Factura> it= Clinica.getInstance().getFacturasOrdenadas().iterator();
+    	boolean bandera=false;
+    	while(it.hasNext() && bandera==false) {
+    		if(numeroDeFactura==it.next().getNumFactura())
+    			bandera=true;
+    	}
+    		return bandera;
+        
     }
     private double sumaprestacionesimparesxd() //si esto es un xd
     {
