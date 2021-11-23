@@ -393,6 +393,57 @@ public class Clinica {
         }
     }
 
+    public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
+	double respuesta = 0;
+	double importeparcial=0,importetotal=0;
+	long diasDiferencia=0;
+	Factura factura= ExistenFactura(numeroDeFactura);
+	if (factura!=null) {
+		factura.ImprimeFacturaConsola();
+		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-factura.getFecha().getTimeInMillis()/(1000 * 60 * 60 * 24));
+		if(diasDiferencia<10) {
+			importeparcial=factura.getCostoTotalFactura()-(factura.sumaprestacionesimpares()*0.8);
+		}
+		else {
+			importeparcial=factura.getCostoTotalFactura()*0.7; 
+		}
+		if(factura.getPaciente().getRangoEtario().equals("Mayor")) {
+			importetotal=importeparcial*1.5; 
+		}
+		else {
+			importetotal=importeparcial*0.9;
+		}
+		if(Math.floor(Math.random()*31+1)==factura.getFecha().getTimeInMillis()/(1000 * 60 * 60 * 24)) {
+			respuesta=importetotal;
+		}
+		else {
+			if(listaDeInsumos!=null && listaDeInsumos.size()>0) {
+				respuesta=importetotal+sumaArray(listaDeInsumos);
+			}
+		}
+	}
+	return respuesta;
+}
+private double sumaArray(ArrayList<Double> listaDeInsumos){
+    	
+		double respuesta=0.0;
+    	for(int i=0;i<listaDeInsumos.size();i++) {
+    		respuesta+=listaDeInsumos.get(i);
+    	}
+    	
+    	return respuesta;
+    }
+    
+    private Factura ExistenFactura(int numeroDeFactura) {
+    	Iterator<Factura> it= Clinica.getInstance().getFacturasOrdenadas().iterator();
+    	Factura bandera=null;
+    	while(it.hasNext() && bandera==null) {
+    		if(numeroDeFactura==it.next().getNumFactura())
+    			bandera=it.next();
+    	}
+    		return bandera;  
+    }
+    
 
     public ArrayList<Factura> getFacturasOrdenadas() {
         Collections.sort(this.facturas);

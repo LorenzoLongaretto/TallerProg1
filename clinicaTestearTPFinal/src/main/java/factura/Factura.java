@@ -44,46 +44,6 @@ public class Factura implements Comparable<Factura> {
 
     public Factura() {
     }
-        public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
-		double respuesta = 0;
-		double importeparcial=0,importetotal=0;
-		long diasDiferencia=0;
-    	if ( ExistenFactura(numeroDeFactura)) {
-    		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-this.fecha.getTimeInMillis()/(1000 * 60 * 60 * 24));
-    		if(diasDiferencia<10) {
-    			importeparcial=this.costoTotalFactura-(sumaprestacionesimparesxd()*0.8);
-    		}
-    		else {
-    			importeparcial=this.costoTotalFactura*0.7; 
-    		}
-    		if(this.paciente.getRangoEtario().equals("Mayor")) {
-    			importetotal=importeparcial*1.5; 
-    		}
-    		else {
-    			importetotal=importeparcial*0.9;
-    		}
-    		if(Math.random()*30+1==this.fecha.getTimeInMillis()) {
-    			respuesta=importetotal;
-    		}
-    		else {
-    			if(listaDeInsumos!=null && listaDeInsumos.size()>0) {
-    				respuesta=importetotal+sumaArray(listaDeInsumos);
-    			}
-    		}
-    	}
-		return respuesta;
-    }
-
-
-    private double sumaArray(ArrayList<Double> listaDeInsumos){
-    	
-		double respuesta=0.0;
-    	for(int i=0;i<listaDeInsumos.size();i++) {
-    		respuesta+=listaDeInsumos.get(i);
-    	}
-    	
-    	return respuesta;
-    }
     
     
         public static int getNumFacturaMax() {
@@ -122,17 +82,8 @@ public class Factura implements Comparable<Factura> {
     {
     	this.prestaciones.add(valor);
     }
-    private boolean ExistenFactura(int numeroDeFactura) {
-    	Iterator<Factura> it= Clinica.getInstance().getFacturasOrdenadas().iterator();
-    	boolean bandera=false;
-    	while(it.hasNext() && bandera==false) {
-    		if(numeroDeFactura==it.next().getNumFactura())
-    			bandera=true;
-    	}
-    		return bandera;
-        
-    }
-    private double sumaprestacionesimparesxd() //si esto es un xd
+   
+    public double sumaprestacionesimpares() 
     {
     	double respuesta=0;
     	for(int i=0;i<this.prestaciones.size();i++) {
@@ -141,7 +92,16 @@ public class Factura implements Comparable<Factura> {
     	return respuesta;
     }
     
-    /**
+    
+    public double getCostoTotalFactura() {
+		return costoTotalFactura;
+	}
+
+	public void setCostoTotalFactura(double costoTotalFactura) {
+		this.costoTotalFactura = costoTotalFactura;
+	}
+
+	/**
      * Imprime la factura con los datos de Prestacion, Valor, Cantidad, Subtotal
      * Post: Imprime en formato de tabla la informacion
      */
@@ -165,9 +125,9 @@ public class Factura implements Comparable<Factura> {
             datos[contadorDatos][2] = consultas.get(medActual);
             datos[contadorDatos][3] = medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
             costoTotal += medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
-          //ACA LLAMAR A METODO QUE AGREGE EN UNA LINKEDLIST EL SUBTOTAL
+         
             if(contadorDatos%2==0) {
-            	agregaprestacion((double)datos[contadorDatos][3]); //ESPERO QUE ESTO SEA EL SUBTOTAL
+            	agregaprestacion((double)datos[contadorDatos][3]);
             }
             contadorDatos++;
         }
@@ -184,9 +144,9 @@ public class Factura implements Comparable<Factura> {
             } catch (DiasInvalidosException e) {
                 e.fillInStackTrace();
             }
-            //ACA LLAMAR A METODO QUE AGREGE EN UNA LINKEDLIST EL SUBTOTAL
+            
             if(contadorDatos%2==0) {
-            	agregaprestacion((double)datos[contadorDatos][3]); //ESPERO QUE ESTO SEA EL SUBTOTAL
+            	agregaprestacion((double)datos[contadorDatos][3]); 
             }
             contadorDatos++;
         }
@@ -196,7 +156,7 @@ public class Factura implements Comparable<Factura> {
         for (final Object[] entrada : datos) {
             System.out.format("%25s | $%10.2f | %8d | $%7.2f%n", entrada);
         }
-        //AAAAAAAAAAAAAAAAAA
+        
         this.costoTotalFactura=costoTotal;
         System.out.format("\nTotal: $%8.2f%n", costoTotal);
 
