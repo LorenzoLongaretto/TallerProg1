@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
+import java.util.LinkedList;
 
 import exceptions.DiasInvalidosException;
 import exceptions.PacienteInvalidoException;
@@ -24,10 +25,13 @@ public class Factura implements Comparable<Factura> {
     private int numFactura;
     private Paciente paciente;
     private GregorianCalendar fecha;
+    private LinkedList prestaciones=new LinkedList<>();
+    private double costoTotalFactura;
 
+    
+    
     private final float valorAgregadoConsulta = 0.2f;
-
-    public Factura(Paciente paciente, GregorianCalendar fecha) throws PacienteInvalidoException {
+	public Factura(Paciente paciente, GregorianCalendar fecha) throws PacienteInvalidoException {
         numFacturaMax++;
         numFactura = numFacturaMax;
         this.fecha = fecha;
@@ -40,16 +44,17 @@ public class Factura implements Comparable<Factura> {
     public Factura() {
     }
     
-   /* public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList listaDeInsumos) {
-		double respuesta=0;
+    public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
+		double respuesta=0.0;
 		double importeparcial=0,importetotal=0;
+		long diasDiferencia=0;
     	if (numeroDeFactura>0) { //xd
-    		 long diasDiferencia=(long)( (fechaDeSolicitud.getTime()-this.fecha.getTime()) /(1000 * 60 * 60 * 24));
+    		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-this.fecha.getTimeInMillis());
     		if(diasDiferencia<10) {
-    			importeparcial=total-(subtotalimpar*0.8);//falta calcular total y subtotalimpar
+    			importeparcial=this.costoTotalFactura-(sumaprestacionesimparesxd()*0.8);//falta calcular total y subtotalimpar
     		}
     		else {
-    			importeparcial=total*0.7; //B
+    			importeparcial=this.costoTotalFactura*0.7; //B
     		}
     		if(this.paciente.getRangoEtario().equals("Mayor")) {
     			importetotal=importeparcial*1.5; //B
@@ -57,22 +62,32 @@ public class Factura implements Comparable<Factura> {
     		else {
     			importetotal=importeparcial*0.9;
     		}
-    		if(Math.random()*30+1=Math.random()*30+1) { //ALEATORIO y dia de fecha de facturacion
+    		if(Math.random()*30+1==Math.random()*30+1) { //ALEATORIO y dia de fecha de facturacion
     			respuesta=importetotal;
     		}
     		else {
-    			if(listaDeInsumos.size()>0) {
-    				respuesta=importetotal+sumaArray();
+    			if(listaDeInsumos!=null && listaDeInsumos.size()>0) {
+    				respuesta=importetotal+sumaArray(listaDeInsumos);
     			}
     		}
     	}
     	else
     		return respuesta;
-
+		return respuesta;
     }
-*/
 
-    public static int getNumFacturaMax() {
+    private double sumaArray(ArrayList<Double> listaDeInsumos){
+    	
+		double respuesta=0.0;
+    	for(int i=0;i<listaDeInsumos.size();i++) {
+    		respuesta+=listaDeInsumos.get(i);
+    	}
+    	
+    	return respuesta;
+    }
+    
+    
+        public static int getNumFacturaMax() {
         return numFacturaMax;
     }
 
@@ -103,7 +118,20 @@ public class Factura implements Comparable<Factura> {
     public float getValorAgregadoConsulta() {
         return valorAgregadoConsulta;
     }
-
+    
+    private void agregaprestacion(double valor)
+    {
+    	this.prestaciones.add(valor);
+    }
+    private double sumaprestacionesimparesxd() //si esto es un xd
+    {
+    	double respuesta=0;
+    	for(int i=0;i<this.prestaciones.size();i++) {
+    		respuesta+=(double)this.prestaciones.get(i);
+    	}
+    	return respuesta;
+    }
+    
     /**
      * Imprime la factura con los datos de Prestacion, Valor, Cantidad, Subtotal
      * Post: Imprime en formato de tabla la informacion
@@ -128,7 +156,10 @@ public class Factura implements Comparable<Factura> {
             datos[contadorDatos][2] = consultas.get(medActual);
             datos[contadorDatos][3] = medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
             costoTotal += medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
-
+          //ACA LLAMAR A METODO QUE AGREGE EN UNA LINKEDLIST EL SUBTOTAL
+            if(contadorDatos%2==0) {
+            	agregaprestacion((double)datos[contadorDatos][3]); //ESPERO QUE ESTO SEA EL SUBTOTAL
+            }
             contadorDatos++;
         }
 
@@ -144,7 +175,10 @@ public class Factura implements Comparable<Factura> {
             } catch (DiasInvalidosException e) {
                 e.fillInStackTrace();
             }
-
+            //ACA LLAMAR A METODO QUE AGREGE EN UNA LINKEDLIST EL SUBTOTAL
+            if(contadorDatos%2==0) {
+            	agregaprestacion((double)datos[contadorDatos][3]); //ESPERO QUE ESTO SEA EL SUBTOTAL
+            }
             contadorDatos++;
         }
 
@@ -153,7 +187,8 @@ public class Factura implements Comparable<Factura> {
         for (final Object[] entrada : datos) {
             System.out.format("%25s | $%10.2f | %8d | $%7.2f%n", entrada);
         }
-
+        //AAAAAAAAAAAAAAAAAA
+        this.costoTotalFactura=costoTotal;
         System.out.format("\nTotal: $%8.2f%n", costoTotal);
 
     }
@@ -214,7 +249,7 @@ public class Factura implements Comparable<Factura> {
         }
 
         sb.append(String.format("\nTotal: $%8.2f\n", costoTotal));
-
+        
 
         return sb;
     }

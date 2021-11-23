@@ -36,7 +36,20 @@ private Medico medico;
 	@Test
 	public void testConstructor() {
 		String dni = medico.getDni();
+		String domicilio = medico.getDomicilio();
+		String ciudad = medico.getCiudad();
+		String telefono = medico.getTelefono();
+		String nombre = medico.getNombre();
+		String nro = ""+medico.getNumero();
+		
+		
 		Assert.assertEquals("El dni no se cargo correctamente","234565",dni);
+		Assert.assertEquals("El domicilio no se cargo correctamente","Marconi 2345",domicilio);
+		Assert.assertEquals("La ciudad no se cargo correctamente","Mar del Plata",ciudad);
+		Assert.assertEquals("El telefono no se cargo correctamente","223456732",telefono);
+		Assert.assertEquals("El nombre no se cargo correctamente","Susana Ibanez",nombre);
+		Assert.assertEquals("El nro no se cargo correctamente","1502",nro);
+
 	}
 	@Test
 	public void testReporteFechaValida() {
