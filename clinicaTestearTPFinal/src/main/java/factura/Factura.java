@@ -31,8 +31,6 @@ public class Factura implements Comparable<Factura> {
     private LinkedList prestaciones=new LinkedList<>();
     private double costoTotalFactura;
 
-    
-    
     private final float valorAgregadoConsulta = 0.2f;
 	public Factura(Paciente paciente, GregorianCalendar fecha) throws PacienteInvalidoException {
         numFacturaMax++;
@@ -46,21 +44,20 @@ public class Factura implements Comparable<Factura> {
 
     public Factura() {
     }
-    
-    public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
+        public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
 		double respuesta = 0;
 		double importeparcial=0,importetotal=0;
 		long diasDiferencia=0;
     	if ( ExistenFactura(numeroDeFactura)) {
-    		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-this.fecha.getTimeInMillis());
+    		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-this.fecha.getTimeInMillis()/(1000 * 60 * 60 * 24));
     		if(diasDiferencia<10) {
     			importeparcial=this.costoTotalFactura-(sumaprestacionesimparesxd()*0.8);
     		}
     		else {
-    			importeparcial=this.costoTotalFactura*0.7; //B
+    			importeparcial=this.costoTotalFactura*0.7; 
     		}
     		if(this.paciente.getRangoEtario().equals("Mayor")) {
-    			importetotal=importeparcial*1.5; //B
+    			importetotal=importeparcial*1.5; 
     		}
     		else {
     			importetotal=importeparcial*0.9;
@@ -76,6 +73,7 @@ public class Factura implements Comparable<Factura> {
     	}
 		return respuesta;
     }
+
 
     private double sumaArray(ArrayList<Double> listaDeInsumos){
     	
