@@ -30,6 +30,9 @@ public class TestVentana {
         robot = new Robot();
         ventana = new Ventana();
         controlador = new Controlador(ventana);
+        clinica = Clinica.getInstance();
+        Utils.cargarDatosClinicaTesting();
+
 
         ventana.actualizaListaMedicos(Clinica.getInstance().getMedicos());
         ventana.actualizaListaPacientes(Clinica.getInstance().getPacientes());
@@ -37,7 +40,8 @@ public class TestVentana {
 
     @After
     public void tearDown() throws Exception {
-        clinica.limpiarColecciones();
+        if (clinica != null)
+            clinica.limpiarColecciones();
     }
 
     @Test

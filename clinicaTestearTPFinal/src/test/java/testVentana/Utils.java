@@ -7,7 +7,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class Utils {
-    public static final int delay = 250;
+    public static final int delay = 330;
 
     public static void click(Robot robot) {
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
