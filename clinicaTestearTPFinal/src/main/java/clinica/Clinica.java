@@ -1,5 +1,6 @@
 package clinica;
 
+import app.NumeroAzar;
 import exceptions.DiasInvalidosException;
 import exceptions.NoExisteException;
 import exceptions.PacienteInvalidoException;
@@ -399,7 +400,7 @@ public class Clinica {
 	long diasDiferencia=0;
 	Factura factura= ExistenFactura(numeroDeFactura);
 	if (factura!=null) {
-		//factura.ImprimeFacturaConsola(); Se hace adentro de agregaFactura(), en clinica
+		//factura.ImprimeFacturaConsola(); Se hace en agregaFactura()
 		diasDiferencia= ((fechaDeSolicitud.getTimeInMillis()-factura.getFecha().getTimeInMillis())/(1000 * 60 * 60 * 24));
 		if(diasDiferencia<10) {
 			importeparcial=factura.getCostoTotalFactura()-(factura.sumaprestacionesimpares()*0.8);
@@ -413,7 +414,7 @@ public class Clinica {
 		else {
 			importetotal=importeparcial*0.9;
 		}
-		if(Math.floor(Math.random()*31+1)==factura.getFecha().getTimeInMillis()/(1000 * 60 * 60 * 24)) {
+		if(NumeroAzar.getNumero() ==factura.getFecha().toZonedDateTime().getDayOfMonth()) {
 			respuesta=importetotal;
 		}
 		else {
@@ -470,5 +471,6 @@ private double sumaArray(ArrayList<Double> listaDeInsumos){
     public void limpiarColecciones(){
         pacientes.clear();
         medicos.clear();
+        facturas.clear();
     }
 }
