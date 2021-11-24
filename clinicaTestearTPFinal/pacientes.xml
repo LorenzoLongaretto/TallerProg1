@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="16.0.1" class="java.beans.XMLDecoder">
+<java version="16.0.2" class="java.beans.XMLDecoder">
  <object class="java.util.TreeSet">
-  <void method="add">
-   <object class="usuarios.Mayor">
-    <void property="ciudad">
-     <string>Mar del plata</string>
-    </void>
-    <void property="dni">
-     <string>65761321</string>
-    </void>
-    <void property="domicilio">
-     <string>Moreno 1239</string>
-    </void>
-    <void property="nombre">
-     <string>Veronica Galindo</string>
-    </void>
-    <void property="numero">
-     <int>1</int>
-    </void>
-    <void property="rangoEtario">
-     <string>Mayor</string>
-    </void>
-    <void property="telefono">
-     <string>2234564687</string>
-    </void>
-   </object>
-  </void>
   <void method="add">
    <object class="usuarios.Nino">
     <void property="ciudad">
