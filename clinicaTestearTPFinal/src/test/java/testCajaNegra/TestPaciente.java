@@ -15,17 +15,21 @@ import usuarios.Paciente;
 import usuarios.PacienteFactory;
 
 public class TestPaciente {
-private Paciente p;
+private Paciente p=null;
 	@Before
-	public void setUp() throws Exception {
-		p = PacienteFactory.getPaciente("65761321", "Moreno 1239", "Mar del plata", "2234564687", "Veronica Galindo",
-                "Mayor");
+	public void setUp(){
+		try {
+			p = PacienteFactory.getPaciente("65761321", "Moreno 1239", "Mar del plata", "2234564687", "Veronica Galindo",
+			        "Mayor");
+		} catch (NoExisteException e) {
+			Assert.fail("Fallo la creacion");
+		}
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
 	public void testConstructor() {
 		String dni = p.getDni();

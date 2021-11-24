@@ -19,7 +19,7 @@ import usuarios.PacienteFactory;
 public class TestMedico {
 private Medico medico;
 	@Before
-	public void setUp() throws Exception {
+	public void setUp(){
 		 medico = null;
 		try {
 			 medico = MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
