@@ -28,7 +28,7 @@ public class Factura implements Comparable<Factura> {
     private int numFactura;
     private Paciente paciente;
     private GregorianCalendar fecha;
-    private LinkedList prestaciones=new LinkedList<>();
+    private LinkedList<Double> prestaciones=new LinkedList<>();
     private double costoTotalFactura;
 
     private final float valorAgregadoConsulta = 0.2f;
@@ -87,6 +87,7 @@ public class Factura implements Comparable<Factura> {
     {
     	double respuesta=0;
     	for(int i=0;i<this.prestaciones.size();i++) {
+    		if(this.prestaciones.get(i)%2 != 0)
     		respuesta+=(double)this.prestaciones.get(i);
     	}
     	return respuesta;
@@ -126,9 +127,9 @@ public class Factura implements Comparable<Factura> {
             datos[contadorDatos][3] = medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
             costoTotal += medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
          
-            if(contadorDatos%2==0) {
+          
             	agregaprestacion((double)datos[contadorDatos][3]);
-            }
+            
             contadorDatos++;
         }
 
@@ -145,9 +146,9 @@ public class Factura implements Comparable<Factura> {
                 e.fillInStackTrace();
             }
             
-            if(contadorDatos%2==0) {
+           
             	agregaprestacion((double)datos[contadorDatos][3]); 
-            }
+        
             contadorDatos++;
         }
 
