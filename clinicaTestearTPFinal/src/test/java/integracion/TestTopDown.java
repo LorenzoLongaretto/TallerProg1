@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import vistas.Ventana;
 
+import static org.mockito.Mockito.mock;
+
 
 public class TestTopDown {
     private Clinica clinica;
@@ -26,7 +28,8 @@ public class TestTopDown {
 
     @Test
     public void testAltaPaciente(){
-        Ventana ventana ;
+        Ventana ventana =mock(Ventana.class);
+
     }
 
 }

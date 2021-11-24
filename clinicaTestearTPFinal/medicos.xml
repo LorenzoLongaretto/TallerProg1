@@ -52,7 +52,7 @@
    </object>
   </void>
   <void method="add">
-   <object class="usuarios.MedicoPermanenteDecorator">
+   <object class="usuarios.MedicoPermanenteDecorator" id="MedicoPermanenteDecorator0">
     <void property="ciudad">
      <string>Mar del Plata</string>
     </void>
@@ -96,13 +96,37 @@
     <void property="numero">
      <int>1408</int>
     </void>
+    <void property="reporte">
+     <void method="add">
+      <object class="factura.Reporte">
+       <void property="cantConsultas">
+        <int>1</int>
+       </void>
+       <void property="fecha">
+        <object class="java.util.GregorianCalendar" id="GregorianCalendar0">
+         <void property="time">
+          <object class="java.util.Date">
+           <long>1637774724372</long>
+          </object>
+         </void>
+        </object>
+       </void>
+       <void property="nombrePaciente">
+        <string>Veronica Galindo</string>
+       </void>
+       <void property="subtotal">
+        <double>7062.000000000001</double>
+       </void>
+      </object>
+     </void>
+    </void>
     <void property="telefono">
      <string>5761234</string>
     </void>
    </object>
   </void>
   <void method="add">
-   <object class="usuarios.MedicoTemporarioDecorator">
+   <object class="usuarios.MedicoTemporarioDecorator" id="MedicoTemporarioDecorator0">
     <void property="ciudad">
      <string>Mar del Plata</string>
     </void>
@@ -145,6 +169,24 @@
     </void>
     <void property="numero">
      <int>1409</int>
+    </void>
+    <void property="reporte">
+     <void method="add">
+      <object class="factura.Reporte">
+       <void property="cantConsultas">
+        <int>2</int>
+       </void>
+       <void property="fecha">
+        <object idref="GregorianCalendar0"/>
+       </void>
+       <void property="nombrePaciente">
+        <string>Veronica Galindo</string>
+       </void>
+       <void property="subtotal">
+        <double>15435.0</double>
+       </void>
+      </object>
+     </void>
     </void>
     <void property="telefono">
      <string>57658432</string>
@@ -227,7 +269,7 @@
    </object>
   </void>
   <void method="add">
-   <object class="usuarios.MedicoPermanenteDecorator">
+   <object class="usuarios.MedicoPermanenteDecorator" id="MedicoPermanenteDecorator1">
     <void property="ciudad">
      <string>Mar del Plata</string>
     </void>
@@ -270,6 +312,24 @@
     </void>
     <void property="numero">
      <int>1502</int>
+    </void>
+    <void property="reporte">
+     <void method="add">
+      <object class="factura.Reporte">
+       <void property="cantConsultas">
+        <int>1</int>
+       </void>
+       <void property="fecha">
+        <object idref="GregorianCalendar0"/>
+       </void>
+       <void property="nombrePaciente">
+        <string>Veronica Galindo</string>
+       </void>
+       <void property="subtotal">
+        <double>3465.0000000000005</double>
+       </void>
+      </object>
+     </void>
     </void>
     <void property="telefono">
      <string>223456732</string>
