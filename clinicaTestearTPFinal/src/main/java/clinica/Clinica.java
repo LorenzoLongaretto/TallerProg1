@@ -399,8 +399,8 @@ public class Clinica {
 	long diasDiferencia=0;
 	Factura factura= ExistenFactura(numeroDeFactura);
 	if (factura!=null) {
-		factura.ImprimeFacturaConsola();
-		diasDiferencia=(long) (fechaDeSolicitud.getTimeInMillis()-factura.getFecha().getTimeInMillis()/(1000 * 60 * 60 * 24));
+		//factura.ImprimeFacturaConsola(); Se hace adentro de agregaFactura(), en clinica
+		diasDiferencia= ((fechaDeSolicitud.getTimeInMillis()-factura.getFecha().getTimeInMillis())/(1000 * 60 * 60 * 24));
 		if(diasDiferencia<10) {
 			importeparcial=factura.getCostoTotalFactura()-(factura.sumaprestacionesimpares()*0.8);
 		}
@@ -438,8 +438,9 @@ private double sumaArray(ArrayList<Double> listaDeInsumos){
     	Iterator<Factura> it= Clinica.getInstance().getFacturasOrdenadas().iterator();
     	Factura bandera=null;
     	while(it.hasNext() && bandera==null) {
-    		if(numeroDeFactura==it.next().getNumFactura())
-    			bandera=it.next();
+            Factura actual = it.next();
+    		if(numeroDeFactura==actual.getNumFactura())
+    			bandera=actual;
     	}
     		return bandera;  
     }
